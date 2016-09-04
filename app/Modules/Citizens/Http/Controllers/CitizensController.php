@@ -36,7 +36,7 @@ class CitizensController extends Controller
 
     function listDetails()
     {
-        $citizens = Citizen::paginate(4);
+        $citizens = Citizen::orderBy('name','asc')->paginate(3);
         return view('citizens::information.list', ['citizens' => $citizens]);
     }
 
@@ -46,12 +46,31 @@ class CitizensController extends Controller
 
     }
 
+    function search( Request $request ){
+
+        $q = $request->get('q');
+        $citizens = Citizen::where('name','like',"%$q%")->orderBy('name','asc')->paginate(3);
+        return view('citizens::information.list', ['citizens' => $citizens]);
+    }
+
     function updateDetails(Request $request, Citizen $citizen)
     {
-        $citizen->update($request->all())->with();
+        $input = $request->all();
+        $file = $request->file('image');
 
+        if($request->hasFile('image')) {
+
+            $imageName = $file->getClientOriginalName();
+            $fileName = date('Y-m-d-h-i-s') . '-' . preg_replace('[ ]', '-', $imageName);
+            $file->move(public_path() . '/uploads', $fileName);
+            $input['image'] = $fileName;
+
+        }else{
+            $input['image'] = $input['old_image'];
+        }
+
+        $citizen->update($input);
         return redirect()->route('citizens::listinformation');
-
 
     }
 

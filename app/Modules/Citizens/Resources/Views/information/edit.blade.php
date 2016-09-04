@@ -306,6 +306,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Upload images:</label>
+                                        <input type="hidden" name="old_image" value="{{$citizen->image}}">
                                         <input type="file" name="image" value="{{ $citizen->image }}">
                                         <span class="text-danger">{{ $errors->first('image') }}</span>
                                         <td>

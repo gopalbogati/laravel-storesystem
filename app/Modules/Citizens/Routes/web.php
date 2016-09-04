@@ -18,7 +18,5 @@ Route::group(['prefix' => 'citizens'], function () {
     Route::get('edit/{citizen}', 'CitizensController@editDetails')->name('citizens::editcitizens');
     Route::post('update/{citizen}', 'CitizensController@updateDetails')->name('citizens::updatecitizen');
     Route::get('delete/{citizen}', 'CitizensController@deleteDetails')->name('citizens::deletecitizen');
-
-
-
+    Route::get('search', 'CitizensController@search')->name('citizens::search');
 });
