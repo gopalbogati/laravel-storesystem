@@ -15,7 +15,7 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::post('/signincheck', 'AuthController@checkSignin')->name('auth::signin.store');
     Route::post('/signup', 'AuthController@storeSignup')->name('auth::signup.store');
-    //Route::get('auth/logout', 'AuthController@getLogout')->name('auth::logout');
+    Route::get('auth/logout', 'AuthController@getLogout')->name('auth::logout');
 
     //Route::post('login', ['as' => 'login-admin', 'uses' => 'AuthController@authenticateAdmin']);
 });

@@ -3,3 +3,8 @@
     <strong>Success:</strong>{{Session::get('success')}}
 </div>
 @endif
+@if (Session::has('message') )
+    <div class="alert alert-danger" align="center">
+        {!! Session::get('message') !!}
+    </div>
+@endif

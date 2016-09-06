@@ -1,9 +1,9 @@
 @include('citizens::includes.session')
 @extends('master')
-
 @section('content')
 
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0"
+         xmlns="http://www.w3.org/1999/html">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Navigation</span>
@@ -232,29 +232,18 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="sidebar-search">
-                        <div class="input-group custom-search-form">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                        <!-- /input-group -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Citizenship<span
-                                    class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level" class="active">
-                            <li>
-                                <a href="{{route('citizens::addCitizensDetails')}}">Add Citizenship information</a>
-                            </li>
-                            <li>
-                                <a href="{{route('citizens::listinformation')}}">View Citizenship informations</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
+
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Citizenship<span
+                                class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level" class="active">
+                        <li>
+                            <a href="{{route('citizens::addCitizensDetails')}}">Add Citizenship information</a>
+                        </li>
+                        <li>
+                            <a href="{{route('citizens::listinformation')}}">View Citizenship informations</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
                     </li>
 
                     <li>
@@ -282,9 +271,34 @@
     <div class="container" style="width:870px;">
         <a class="btn btn-primary -align-right" href="{{ route('citizens::addCitizensDetails') }}">
             Add Citizens Information</a>
+        <p>
+
+            {!! Form::Open(['route'=>'citizens::search','method'=>'GET','class'=>'input-group custom-search-form','role'=>'search']) !!}
+
+            {!! Form::text('q',null,['class'=>'form-control','placeholder'=>'search'])!!}
+        </p>
+        <button class="btn btn-default" type="button">
+            <i class="fa fa-search"></i>
+        </button>
+    {!! Form::close()!!}
+    <!-- /input-group -->
+        </li>
+        {!! Form::open(['route' => 'citizens:citizen.destroy','method'=>'DELETE','id'=>'formDelete']) !!}
         <table class="table -align-justify">
             <tr class="table-bordered">
-                <th>Name</th>
+                <th>
+                    Name
+                    </a>
+                    <select>
+
+                        <a href="{{ route('citizens.index') }}?sort={{--{{ $sort }}--}}&key=name" class="grey">
+                            Title
+                            <span><i class="fa fa-sort text-success"></i></span>
+                        </a>
+                    </select>
+                </th>
+
+                </th>
                 <th>Date of birth</th>
                 <th>Age</th>
                 <th>Father Name</th>
@@ -294,6 +308,11 @@
                 <th>Description</th>
                 <th>Image</th>
                 <th>Action</th>
+                <th></th>
+                <th><input type="checkbox" id="checkAll" name="delete"></th>
+                <th>
+                    <input type="button" onClick="confirmAndSubmit()" value="Delete">
+                </th>
 
             </tr>
             @foreach($citizens as $citizen)
@@ -320,11 +339,22 @@
                         <a href="{{ route('citizens::deletecitizen', $citizen->id) }}">DELETE</a>
 
                     </td>
+                    <td>
+
+                    <td>
+                        <input type="checkbox" name="toDelete[]" value="{{$citizen->id}}" class="checkItem">
+                    </td>
+                    {!! Form::close() !!}
                 </tr>
+
             @endforeach
 
+
         </table>
+        {!! Form::close() !!}
         {{--//for pagination--}}
         {{$citizens->links()}}
     </div>
 @stop
+
+

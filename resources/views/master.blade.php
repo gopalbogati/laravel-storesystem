@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script type="text/javascript" src="{{URL::asset('../js/sweetalert.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="../js/sweetalert.css">
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 

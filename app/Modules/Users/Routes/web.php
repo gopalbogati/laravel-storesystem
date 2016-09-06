@@ -13,7 +13,7 @@
 
 Route::group(['prefix' => 'users'], function () {
 
-    Route::get('/signin', 'UsersGroupController@signin');
+    Route::get('/signin', 'UsersGroupController@signin')->name('auth:sign');
     Route::post('/signin', ['as' => 'signin.store', 'uses' => 'UsersGroupController@checkSignin']);
     Route::get('/signup', 'UsersGroupController@signup')->name('users::signup');
     Route::get('/dashboard', 'UsersGroupController@dashboard')->name('dashboard');

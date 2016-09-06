@@ -59,9 +59,8 @@ namespace App\Modules\Auth\Http\Controllers {
 
         public function getLogout()
         {
-            /*auth()->logout();
-            return view('users::users.group.userlogin');
-            Session::flush();*/
+            Auth::logout();
+            return redirect()->route('auth:sign');
         }
 
 

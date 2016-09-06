@@ -1,5 +1,5 @@
 {
-    "name": "Citizenship module",
+    "name": "Citizenship",
     "slug": "citizens",
     "version": "1.0",
     "description": "This modules is used to add information of registered citizens"
