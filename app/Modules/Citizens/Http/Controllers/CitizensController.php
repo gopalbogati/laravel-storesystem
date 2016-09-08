@@ -17,46 +17,25 @@ class CitizensController extends Controller
 
     protected $citizen;
 
-    public function __construct(Citizen $citizen)
+    public function __construct(Citizen $citizens)
     {
         $this->middleware('auth');
-        $this->citizen = $citizen;
+        $this->citizen = $citizens;
     }
 
-    public function index(Request $request)
+    /*public function sortData(Request $request)
     {
-        {
-            $filter['name'] = $request->get('q');
-            $sort['sort'] = $request->get('sort', 'desc');
-            $sort['by'] = $request->get('key', 'id');
 
-            $citizens = $this->citizen->findAll(8, $filter, $sort, [0, 1]);
-            $citizens->appends(['q' => $filter['name']]);
-
-            $sort = ($sort['sort'] == 'desc') ? 'asc' : 'desc';
-
-            return View('citizens::information.list', compact('citizens', 'sort'));
-        }
-
-    }
-
-    public function findAll($limit = 12, $filter = [], $sort = ['by' => 'id', 'sort' => 'DESC'], $status = [0, 1])
-    {
-        $result = Citizen::when(array_keys($filter, true), function ($query) use ($filter) {
-            $query->where('name', 'like', '%' . $filter['name'] . '%');
-            return $query;
-        })
-            ->orderBy($sort['by'], $sort['sort'])
-            ->paginate(env('DEF_PAGE_LIMIT', $limit));
+        $citizens = Citizen::all()->paginate('8');
+        return View('citizens::information.list', compact('citizens'));
 
 
-        return $result;
-
-    }
+    }*/
 
 
     function createForm()
     {
+
         return view('citizens::information.create');
     }
 
@@ -81,10 +60,20 @@ class CitizensController extends Controller
         }
     }
 
-    function listDetails()
+    function listDetails(Request $request)
     {
-        $citizens = Citizen::orderBy('name', 'asc')->paginate(3);
-        return view('citizens::information.list', ['citizens' => $citizens]);
+        $order = $request->get('order', 'desc');
+        $attr = $request->get('attr', 'id');
+        if (empty($order)) {
+            $order = 'asc';
+        }
+        if (empty($attr)) {
+            $attr = 'name';
+        }
+        $citizens = Citizen::orderBy($attr, $order)->paginate(3);
+        $order = ($order == 'desc') ? 'asc' : 'desc';
+
+        return view('citizens::information.list', ['citizens' => $citizens, 'order' => $order, 'attr' => $attr]);
     }
 
     function editDetails(Citizen $citizen)
@@ -140,6 +129,7 @@ class CitizensController extends Controller
     public function destroy(Request $request)
     {
         $ids = $request->all();
+
 
         try {
 

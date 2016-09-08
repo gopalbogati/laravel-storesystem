@@ -1,5 +1,5 @@
 <?php
-namespace App\Modules\Citizens\Database\Database\Seeds;
+namespace App\Modules\Citizens\Database\Seeds;
 
 use Illuminate\Database\Seeder;
 use App\Modules\Citizens\Models\Citizen;
@@ -18,14 +18,14 @@ class CitizenSeeder extends Seeder
         for ($i = 0; $i < 10; $i++)
             $citizen = Citizen::create([
                 'name' => $faker->name,
-                'dob' => $faker->dob,
-                'age' => $faker->age,
-                'father_name' => $faker->father_name,
-                'mother_name' => $faker->mother_name,
-                'grandfather_name' => $faker->grandfather_name,
-                'permanent_address' => $faker->permanent_address,
-                'image' => $faker->image,
-                'description' => $faker->description
+                'dob' => $faker->dateTime,
+                'age' => $faker->dateTime,
+                'father_name' => $faker->firstName,
+                'mother_name' => $faker->firstName,
+                'grandfather_name' => $faker->lastName,
+                'permanent_address' => $faker->address,
+                //'image' => $faker->sate,
+                'description' => $faker->text
             ]);
         echo $citizen->name . "seeded" . PHP_EOL;
     }

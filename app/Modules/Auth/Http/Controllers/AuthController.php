@@ -3,6 +3,7 @@
 namespace App\Modules\Auth\Http\Controllers {
 
     //use App\Modules\Auth\Models\auth;
+    use App\Modules\Admin\Models\Role;
     use Illuminate\Support\Facades\Auth;
     use Validator;
     use App\Http\Controllers\Controller;
@@ -27,6 +28,7 @@ namespace App\Modules\Auth\Http\Controllers {
 
         public function storeSignup(Request $requests)
         {
+
             //   code for validation of field with table name
             $validator = Validator::make($requests->all(), [
                 'email' => 'required|unique:users|max:255',

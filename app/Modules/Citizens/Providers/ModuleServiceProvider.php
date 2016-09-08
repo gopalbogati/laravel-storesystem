@@ -13,8 +13,8 @@ class ModuleServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadTranslationsFrom(__DIR__.'/../Resources/Lang', 'citizens');
-        $this->loadViewsFrom(__DIR__.'/../Resources/Views', 'citizens');
+        $this->loadTranslationsFrom(__DIR__ . '/../Resources/Lang', 'citizens');
+        $this->loadViewsFrom(__DIR__ . '/../Resources/Views', 'citizens');
     }
 
     /**
@@ -25,5 +25,15 @@ class ModuleServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+        /*$this->citizenRegister();*/
     }
+
+    public function citizenRegister()
+    {/*
+        $this->app->bind(
+            'App\Modules\Citizens\Repositories\CitizenInterface',
+            'App\Modules\Citizens\Repositories\CitizenRepository'
+        );*/
+    }
+
 }

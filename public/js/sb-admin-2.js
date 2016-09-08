@@ -68,3 +68,14 @@ function confirmAndSubmit() {
         }
     });
 }
+
+
+
+//onclick event
+
+$(function(){
+    $('#my_button').click(function(){
+        ($('#test').find('option[text="descending"]').val());
+    });
+
+});

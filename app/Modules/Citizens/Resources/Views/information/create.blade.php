@@ -276,11 +276,14 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-6">
-                                <form role="form"  action="{{route('citizens::insertInformation')}}" method="post" enctype="multipart/form-data">
+                                <form role="form" action="{{route('citizens::insertInformation')}}" method="post"
+                                      enctype="multipart/form-data">
                                     {{csrf_field()}}
+
                                     <div class="form-group">
                                         <label>Person Name:</label>
-                                        <input class="form-control" placeholder="Enter the name of a person" name="name">
+                                        <input class="form-control" placeholder="Enter the name of a person"
+                                               name="name">
                                         <span class="text-danger">{{ $errors->first('name') }}</span>
                                     </div>
                                     <div class="form-group">
@@ -295,27 +298,31 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Father Name:</label>
-                                        <input class="form-control" placeholder="Enter father name of person" name="father_name">
+                                        <input class="form-control" placeholder="Enter father name of person"
+                                               name="father_name">
                                         <span class="text-danger">{{ $errors->first('father_name') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label>Mother Name:</label>
-                                        <input class="form-control" placeholder="Enter mother name of person" name="mother_name">
+                                        <input class="form-control" placeholder="Enter mother name of person"
+                                               name="mother_name">
                                         <span class="text-danger">{{ $errors->first('mother_name') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label>Grandfather Name:</label>
-                                        <input class="form-control" placeholder="Enter grandfather name of person" name="grandfather_name">
+                                        <input class="form-control" placeholder="Enter grandfather name of person"
+                                               name="grandfather_name">
                                         <span class="text-danger">{{ $errors->first('grandfather_name') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label>Permanent address:</label>
-                                        <input class="form-control" placeholder="Enter permanent address of a person" name="permanent_address">
+                                        <input class="form-control" placeholder="Enter permanent address of a person"
+                                               name="permanent_address">
                                         <span class="text-danger">{{ $errors->first('permanent_address') }}</span>
                                     </div>
                                     <div class="form-group">
                                         <label>Upload images:</label>
-                                        <input type="file" name="image" >
+                                        <input type="file" name="image">
                                         <span class="text-danger">{{ $errors->first('image') }}</span>
                                     </div>
                                     <div class="form-group">

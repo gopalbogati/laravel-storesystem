@@ -287,35 +287,44 @@
         <table class="table -align-justify">
             <tr class="table-bordered">
                 <th>
-                    Name
-                    </a>
-                    <select>
-
-                        <a href="{{ route('citizens.index') }}?sort={{--{{ $sort }}--}}&key=name" class="grey">
-                            Title
-                            <span><i class="fa fa-sort text-success"></i></span>
-                        </a>
-                    </select>
+                    <a href="{{route('citizens:citizen.sort') }}?order={{$order}}&attr=name"> Name</a>
                 </th>
-
+                <th>
+                    <a href="{{route('citizens:citizen.sort') }}?order={{$order}}&attr=dob">Date of birth</a>
                 </th>
-                <th>Date of birth</th>
-                <th>Age</th>
-                <th>Father Name</th>
-                <th>Mother Name</th>
-                <th>Grandfather Name</th>
-                <th>Permanent address</th>
-                <th>Description</th>
+                <th>
+                    <a href="{{route('citizens:citizen.sort') }}?order={{$order}}&attr=age">Age</a>
+                </th>
+                <th>
+                    <a href="{{route('citizens:citizen.sort') }}?order={{$order}}&attr=father_name">Father Name</a>
+                </th>
+                <th>
+                    <a href="{{route('citizens:citizen.sort') }}?order={{$order}}&attr=mother_name">Mother Name</a>
+                </th>
+                <th>
+                    <a href="{{route('citizens:citizen.sort') }}?order={{$order}}&attr=grandfather_name">Grandfather
+                        Name</a>
+                </th>
+                <th>
+                    <a href="{{route('citizens:citizen.sort') }}?order={{$order}}&attr=permanent_address">Permanent
+                        address</a>
+                </th>
+                <th>
+                    <a href="{{route('citizens:citizen.sort') }}?order={{$order}}&attr=description">Description</a>
+                </th>
                 <th>Image</th>
                 <th>Action</th>
                 <th></th>
-                <th><input type="checkbox" id="checkAll" name="delete"></th>
+                <th>
+                    <input type="checkbox" id="checkAll" name="delete">
+                </th>
                 <th>
                     <input type="button" onClick="confirmAndSubmit()" value="Delete">
                 </th>
 
             </tr>
             @foreach($citizens as $citizen)
+
                 <tr>
                     <td>{{$citizen->name}}</td>
                     <td>{{$citizen->dob}}</td>

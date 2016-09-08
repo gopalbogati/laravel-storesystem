@@ -4,6 +4,7 @@
 namespace App\Modules\Users\Http\Controllers {
 
     use App\Http\Controllers\Controller;
+    use App\Modules\Admin\Models\Role;
     use Illuminate\Http\Request;
     use App\Modules\Users\Models\User;
     use Auth;
@@ -14,6 +15,7 @@ namespace App\Modules\Users\Http\Controllers {
 
         public function SignUp()
         {
+
 
             return view('users::users.group.signup');
         }
